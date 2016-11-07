@@ -1,10 +1,13 @@
-import quandl, math
+import quandl
+import math
+import pickle
 import numpy as np
-import matplotlib.pyplot as plt
-from sklearn import preprocessing, cross_validation
+from sklearn import preprocessing, model_selection
 from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
 from matplotlib import style
-from datetime import datetime
+import datetime
+
 style.use('ggplot')
 
 df = quandl.get("WIKI/GOOGL")
@@ -27,9 +30,16 @@ df.dropna(inplace=True)
 
 y = np.array(df['label'])
 
-X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.2)
 clf = LinearRegression(n_jobs=-1)
 clf.fit(X_train, y_train)
+
+# with open('linearregression.pickle', 'wb') as f:
+#     pickle.dump(clf, f)
+
+pickle_in = open('linearregression.pickle', 'rb')
+clf = pickle.load(pickle_in)
+
 confidence = clf.score(X_test, y_test)
 
 forecast_set = clf.predict(X_lately)
@@ -41,9 +51,9 @@ one_day = 86400
 next_unix = last_unix + one_day
 
 for i in forecast_set:
-    next_date = datetime.fromtimestamp(next_unix)
+    next_date = datetime.datetime.fromtimestamp(next_unix)
     next_unix += 86400
-    df.loc[next_date] = [np.nan for _ in range(len(df.columns) - 1)] + [i]
+    df.loc[next_date] = [np.nan for _ in range(len(df.columns)-1)]+[i]
 
 df['Adj. Close'].plot()
 df['Forecast'].plot()

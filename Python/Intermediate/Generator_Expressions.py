@@ -6,4 +6,3 @@ print(xyz)
 
 for i in xyz:
     print(i)
-    
