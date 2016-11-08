@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 import sys
 
 # sys.stderr.write("This is stderr text\n")

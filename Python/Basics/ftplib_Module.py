@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 from ftplib import FTP
 
 ftp = FTP("domainname.com")

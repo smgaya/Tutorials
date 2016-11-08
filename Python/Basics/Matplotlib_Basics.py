@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 from matplotlib import pyplot as plt
 from matplotlib import style
 

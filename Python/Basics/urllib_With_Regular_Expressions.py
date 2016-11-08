@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 import urllib.request
 import urllib.parse
 import re

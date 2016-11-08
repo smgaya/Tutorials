@@ -1,5 +1,8 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 import socket
-import sys
 from _thread import *
 
 host = ""

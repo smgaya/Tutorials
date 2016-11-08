@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 import socket
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

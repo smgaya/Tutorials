@@ -1,4 +1,7 @@
-# https://pythonprogramming.net/simple-linear-regression-machine-learning-tutorial/?completed=/pickling-scaling-machine-learning-tutorial/
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 from statistics import mean
 import numpy as np
 import random

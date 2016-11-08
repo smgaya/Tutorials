@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 import cv2
 
 img = cv2.imread("C://Users/Thomas/Documents/Downloads/nuig.jpg", 0)

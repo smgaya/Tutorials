@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 import pickle
 
 dict = {1: "a", 2: "c", 3: "f"}

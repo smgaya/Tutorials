@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 x = {"Jack": [15, "blonde"], "Bob": [22, "brown"], "Alice": [12, "black"], "Kevin": [17, "ginger"]}
 
 print(x)

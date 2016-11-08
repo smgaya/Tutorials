@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 import cv2
 
 img1 = cv2.imread("C://Users/Thomas/Documents/Downloads/nuig.jpg", cv2.IMREAD_COLOR)

@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 exec("print('This works')")
 
 list_str = "[3, 4, 5, 6, 1]"

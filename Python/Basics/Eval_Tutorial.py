@@ -1,3 +1,7 @@
+# Thomas Reaney
+# Electronic & Computer Engineering Student
+# National University of Ireland Galway
+
 list_str = "[3, 5, 6, 1, 6]"
 
 list_str = eval(list_str)
