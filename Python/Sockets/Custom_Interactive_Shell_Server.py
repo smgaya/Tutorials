@@ -21,7 +21,7 @@ COMMANDS = {'help': ['Shows this help'],
             'shutdown': ['Shuts server down']}
 
 
-class MultiServer(object):
+class Server(object):
     def __init__(self):
         self.host = ''
         self.port = 9999
@@ -47,7 +47,6 @@ class MultiServer(object):
                 conn.close()
             except Exception as e:
                 print('Could not close connection %s' % str(e))
-                # continue
         self.socket.close()
         sys.exit(0)
 
@@ -56,13 +55,11 @@ class MultiServer(object):
             self.socket = socket.socket()
         except socket.error as msg:
             print("Socket creation error: " + str(msg))
-            # TODO: Added exit
             sys.exit(1)
         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         return
 
     def socket_bind(self):
-        """ Bind socket to port and wait for connection from client """
         try:
             self.socket.bind((self.host, self.port))
             self.socket.listen(5)
@@ -73,7 +70,6 @@ class MultiServer(object):
         return
 
     def accept_connections(self):
-        """ Accept connections from multiple clients and save to list """
         for c in self.all_connections:
             c.close()
         self.all_connections = []
@@ -94,7 +90,6 @@ class MultiServer(object):
         return
 
     def start_turtle(self):
-        """ Interactive prompt for sending commands remotely """
         while True:
             cmd = input('turtle> ')
             if cmd == 'list':
@@ -119,7 +114,6 @@ class MultiServer(object):
         return
 
     def list_connections(self):
-        """ List all connections """
         results = ''
         for i, conn in enumerate(self.all_connections):
             try:
@@ -135,9 +129,6 @@ class MultiServer(object):
         return
 
     def get_target(self, cmd):
-        """ Select target client
-        :param cmd:
-        """
         target = cmd.split(' ')[-1]
         try:
             target = int(target)
@@ -153,9 +144,6 @@ class MultiServer(object):
         return target, conn
 
     def read_command_output(self, conn):
-        """ Read message length and unpack it into an integer
-        :param conn:
-        """
         raw_msglen = self.recvall(conn, 4)
         if not raw_msglen:
             return None
@@ -164,11 +152,6 @@ class MultiServer(object):
         return self.recvall(conn, msglen)
 
     def recvall(self, conn, n):
-        """ Helper function to recv n bytes or return None if EOF is hit
-        :param n:
-        :param conn:
-        """
-        # TODO: this can be a static method
         data = b''
         while len(data) < n:
             packet = conn.recv(n - len(data))
@@ -178,10 +161,6 @@ class MultiServer(object):
         return data
 
     def send_target_commands(self, target, conn):
-        """ Connect with remote target client
-        :param conn:
-        :param target:
-        """
         conn.send(str.encode(" "))
         cwd_bytes = self.read_command_output(conn)
         cwd = str(cwd_bytes, "utf-8")
@@ -205,8 +184,7 @@ class MultiServer(object):
 
 
 def create_workers():
-    """ Create worker threads (will die when main exits) """
-    server = MultiServer()
+    server = Server()
     server.register_signal_handler()
     for _ in range(NUMBER_OF_THREADS):
         t = threading.Thread(target=work, args=(server,))
@@ -216,9 +194,6 @@ def create_workers():
 
 
 def work(server):
-    """ Do the next job in the queue (thread for handling connections, another for sending commands)
-    :param server:
-    """
     while True:
         x = queue.get()
         if x == 1:
@@ -232,7 +207,6 @@ def work(server):
 
 
 def create_jobs():
-    """ Each list item is a new job """
     for x in JOB_NUMBER:
         queue.put(x)
     queue.join()

