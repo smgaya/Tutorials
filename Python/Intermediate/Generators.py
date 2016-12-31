@@ -1,7 +1,3 @@
-# Thomas Reaney
-# Electronic & Computer Engineering Student
-# National University of Ireland Galway
-
 input = [4, 3, 12, 5, 65, 76, 88, 90, 0, 46]
 
 
