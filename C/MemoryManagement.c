@@ -9,7 +9,7 @@ int main()
 
    strcpy(name, "Zara Ali");
 
-   description = (char*)malloc(30 * sizeof(char));
+   description = malloc(30 * sizeof(char));
 	
    if(description == NULL)
    {
@@ -20,7 +20,7 @@ int main()
       strcpy(description, "Zara ali a DPS student.");
    }
 
-   description = (char*)realloc(description, 100 * sizeof(char));
+   description = realloc(description, 100 * sizeof(char));
 	
    if(description == NULL)
    {
