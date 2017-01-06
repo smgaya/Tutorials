@@ -20,7 +20,7 @@ print("Waiting for a connection....")
 
 
 def threaded_client(conn):
-    conn.send(str.encode("\nWelcome! Type your information"))
+    conn.send(str.encode("\nWelcome! value your information"))
 
     while True:
         data = conn.recv(2048)
